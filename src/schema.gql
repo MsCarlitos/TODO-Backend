@@ -1,0 +1,51 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Todo {
+  id: Int!
+  description: String!
+  done: Boolean!
+}
+
+"""Tofo quick aggregation"""
+type AggregationType {
+  total: Int!
+  pending: Int!
+  completed: Int!
+  totalTodoCompeted: Int! @deprecated(reason: "Most use completed insted")
+}
+
+type Query {
+  """Hola Mundo es lo que retorna"""
+  hello: String!
+  RandomNumber: Float!
+
+  """From zero to argument TO"""
+  RandomNumberFromZeroTo(to: Int): Int!
+  todos(status: Boolean): [Todo!]!
+  todo(id: Int): Todo!
+  totalTodos: Int!
+  completedTodos: Int!
+  pendingTodos: Int!
+  aggregations: AggregationType!
+}
+
+type Mutation {
+  createTodo(createTodoInput: CreateTodoInput!): Todo!
+  updateTodo(updateTodoInput: UpdateTodoInput!): Todo!
+  deleteTodo(id: Int!): Boolean!
+}
+
+input CreateTodoInput {
+  """What needs to be done"""
+  description: String!
+}
+
+input UpdateTodoInput {
+  id: Int!
+
+  """What needs to be done"""
+  description: String
+  done: Boolean
+}
